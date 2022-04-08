@@ -13,6 +13,7 @@ let config = {
 let borderUISize = config.height / 15;
 let borderPadding = borderUISize/3;
 
+console.log("hi from main before pushing pulling");
 let game = new Phaser.Game(config);
 //game.scene.Play.update();
 //Play.update();
