@@ -1,6 +1,5 @@
 //const { Phaser } = require("../library/phaser");
-//now in Implementing the scrolling starfield  about 50% down
-//console.log("hello from main.js");
+//now in Keeping Score  about 80% down
 
 let config = {
     type: Phaser.AUTO,
