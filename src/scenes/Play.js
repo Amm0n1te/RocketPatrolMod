@@ -1,25 +1,44 @@
 class Play extends Phaser.Scene {
     constructor() {
-        super("play");
+        super("playScene");
         this.x = 600;
+        this.scrollspeed = 2;
     }
 
-    /*preload() {
-        this.load.imag('imagename', 'image filepath');
-    }*/
+    preload() {
+        //this.load.imag('imagename', 'image filepath');
+        this.load.image("rocket", "assets/rocket.png");
+        this.load.image("spaceship", "assets/spaceship.png");
+        this.load.image("starfield", "assets/starfield.png");
+    }
     create() {
-        let menuText = this.add.text(300, 200, "now in play.js");
-        menuText.setOrigin(0.5, 0.5);
+        this.add.text(50, 200, "Rocket Patrol Play");
+        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
-        console.log("OSIJOSDIJFSD");
-        //this.add.rectangle(0, 0, game.config.width, game.config.height, 0x10b33b);
-        this.add.rectangle(this.x, 10, 50, 50, 0x10b33b).setOrigin(0, 0);
-        //this.scene.start("play");
+        //Green background for UI info
+        this.add.rectangle(0, borderUISize+borderPadding, game.config.width, borderUISize*2, 0x00FF00).setOrigin(0,0);
+        
+        //white borders
+        this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
+        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+
+        //add rocket
+        this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height-borderUISize-borderPadding, 'rocket').setOrigin(0.5, 0);
+
+        //defining keys created in main.js
+        keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+
+
     }
 
     update() {
-        this.x--;
-        if (this.x <= 0) this.x = 600; 
+        this.starfield.tilePositionX -= this.scrollspeed;
+        this.p1Rocket.update();
     }
 
 
