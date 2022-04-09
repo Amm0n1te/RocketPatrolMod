@@ -60,11 +60,11 @@ class Play extends Phaser.Scene {
         // GAME OVER flag
         this.gameOver = false;
 
-        // 60 second play clock. default pass is 60000
+        // play clock. easy is 60 seconds, hard is 45
         scoreConfig.fixedWidth = 0;
-        this.clock = this.time.delayedCall(60000, () => {
+        this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'R: Restart', scoreConfig).setOrigin(0.5); 
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5); 
             this.gameOver = true;   
         }, null, this);
 
@@ -81,6 +81,9 @@ class Play extends Phaser.Scene {
     update() {
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
+        }
+        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
+            this.scene.start("menuScene");
         }
         if (!this.gameOver) {
             this.starfield.tilePositionX -= this.scrollspeed;
