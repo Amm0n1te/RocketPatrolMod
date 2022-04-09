@@ -54,8 +54,6 @@ class Play extends Phaser.Scene {
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(borderUISize + borderPadding, 
-            borderUISize + borderPadding*2, this.p1Score, scoreConfig);
 
         // GAME OVER flag
         this.gameOver = false;
@@ -76,6 +74,9 @@ class Play extends Phaser.Scene {
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
         this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
         this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+
+        this.scoreLeft = this.add.text(borderUISize + borderPadding, 
+            borderUISize + borderPadding*2, this.p1Score, scoreConfig);
     }
 
     update() {
