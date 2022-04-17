@@ -2,7 +2,7 @@
 Casey Chen
 Drone Patrol: Attack on Oritheia
 April 16 2022
-time spent: ~25 hours
+time spent: ~20 hours
 
 POINTS BREAKDOWN
 ========================================
