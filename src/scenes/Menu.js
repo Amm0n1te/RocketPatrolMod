@@ -5,8 +5,15 @@ class Menu extends Phaser.Scene {
 
     preload() {
         this.load.audio('sfx_select', './assets/assets_blip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/assets_explosion38.wav');
+        this.load.audio('sfx_explosion', './assets/launch1.wav');
         this.load.audio('sfx_rocket', './assets/assets_rocket_shot.wav');
+        this.load.audio('ready', './assets/ready.wav');
+        this.load.audio('rearming', './assets/rearming.wav');
+        this.load.audio('explosion0', './assets/Explosion1.wav');
+        this.load.audio('explosion1', './assets/Explosion2.wav');
+        this.load.audio('explosion2', './assets/Explosion3.wav');
+        this.load.audio('explosion3', './assets/Explosion4.wav');
+        this.load.audio('sparrowExplosionSFX', './assets/sparrowExplosion.wav');
     }
 
     create() {
@@ -37,6 +44,7 @@ class Menu extends Phaser.Scene {
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        //this.input.inputPlugin.activePointer;
     }
 
     update() {
