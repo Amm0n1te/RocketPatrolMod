@@ -19,7 +19,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
         if (this.isFiring) { this.status = 'rearming';}
         else if (!this.isFiring) { this.status = 'ready';}
         //left/right movement
-        if (!this.isFiring) {
+        if (!this.isFiring && this.alpha == 1) {
             //this.x = this.pointer.x;
             if(keyLEFT.isDown && this.x >= borderUISize + this.width) {
                 this.x -= this.moveSpeed;
@@ -28,14 +28,14 @@ class Rocket extends Phaser.GameObjects.Sprite {
             }
         }
         // fire button
-        if(Phaser.Input.Keyboard.JustDown(keyF) && !this.isFiring) {
+        if(Phaser.Input.Keyboard.JustDown(keyF) && !this.isFiring && this.alpha == 1) {
             this.isFiring = true;
             this.sfxRocket.play();
             //this.time.delayedCall(1000, this.rearmingVoice.play(), null, this);
             this.rearmingVoice.play();
         }
         // if fired, move up
-        if(this.isFiring && this.y >= borderUISize * 3 + borderPadding) {
+        if(this.isFiring && this.y >= borderUISize * 3 + borderPadding && this.alpha == 1) {
             this.y -= this.moveSpeed;
         }
         // reset on miss
@@ -51,6 +51,11 @@ class Rocket extends Phaser.GameObjects.Sprite {
     reset() {
         this.isFiring = false;
         this.y = game.config.height - borderUISize - borderPadding - 20;
+        /*let delayedReset = this.time.delayedCall(1000, () => {
+            this.alpha = 1;
+            this.isFiring = false;
+            this.y = game.config.height - borderUISize - borderPadding - 20;
+        }, [], this)*/  //delayed reset attempt failed
     }
 
 }

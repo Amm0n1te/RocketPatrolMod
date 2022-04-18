@@ -200,27 +200,33 @@ class Play extends Phaser.Scene {
             this.ship03.update();
             this.sparrow01.update();
         }
+        this.delayTime = 700;
         if(this.checkCollision(this.p1Rocket, this.ship03)) {  //lowest ship
             //console.log('kaboom ship 03');
-            //this.p1Rocket.reset();
-            //this.clock2 = this.time.delayedCall(1000, this.p1Rocket.reset(), null, this);
-            this.time.delayedCall(1000, this.p1Rocket.reset(), null, this);  //why don't these work? 
+            this.p1Rocket.reset();
+            this.p1Rocket.alpha = 0;
+            this.time.delayedCall(this.delayTime, () => {this.p1Rocket.alpha = 1}, null, this);  //why don't these work? 
             this.shipExplode(this.ship03);
+            //console.log('kaboom ship 03');
         }
         if(this.checkCollision(this.p1Rocket, this.ship02)) {
             //console.log('kaboom ship 02');
-            //this.p1Rocket.reset();
-            this.time.delayedCall(1000, this.p1Rocket.reset(), null, this);
+            this.p1Rocket.reset();
+            this.p1Rocket.alpha = 0;
+            this.time.delayedCall(this.delayTime, () => {this.p1Rocket.alpha = 1}, null, this);
             this.shipExplode(this.ship02);
         }
         if(this.checkCollision(this.p1Rocket, this.ship01)) {
             //console.log('kaboom ship 01');
-            //this.p1Rocket.reset();
-            this.time.delayedCall(1000, this.p1Rocket.reset(), null, this); 
+            this.p1Rocket.reset();
+            this.p1Rocket.alpha = 0;
+            this.time.delayedCall(this.delayTime, () => {this.p1Rocket.alpha = 1}, null, this); 
             this.shipExplode(this.ship01);
         }
         if(this.checkCollision(this.p1Rocket, this.sparrow01)) {
             this.p1Rocket.reset();
+            this.p1Rocket.alpha = 0;
+            this.time.delayedCall(this.delayTime, () => {this.p1Rocket.alpha = 1}, null, this); 
             this.sparrowExplode(this.sparrow01);
         }
 
